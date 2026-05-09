@@ -7,6 +7,20 @@ This project is an Android application for tracking vehicle maintenance.
 
 ## Recent Updates
 
+### Logic Implementation: Navigation & Events
+Connected the UI screens using Intents and established a central event handling structure.
+
+#### 1. Activity Management
+- **Created `CreateAccountActivity.java`**: Handles the logic for the account creation screen, including a functional back button.
+- **Manifest Update**: Registered `CreateAccountActivity` in `AndroidManifest.xml`.
+- **MainActivity Update**: Configured `MainActivity` (acting as the Login screen) to initialize event listeners.
+
+#### 2. Event Handling (`Events.java`)
+- Created a dedicated `Events` class to decouple UI logic from Activity classes.
+- **`setupLoginEvents`**: Implemented an `OnClickListener` for `tvSignUp` in the login layout that triggers an `Intent` to navigate to `CreateAccountActivity`.
+
+---
+
 ### UI Implementation: Create Account Screen
 The "Create Account" interface has been fully implemented in `create_account.xml`, matching the design requirements.
 
@@ -20,11 +34,7 @@ The "Create Account" interface has been fully implemented in `create_account.xml
 - **Toolbar**: Features a custom toolbar with a back button and title.
 - **Header**: Includes a themed car logo container, "Get Started" header, and descriptive subtitle.
 - **Social Integration**: Reused stylized buttons for Google and Facebook login.
-- **Form Card**: A white card containing:
-    - **Full Name**: Input field with person icon.
-    - **Email**: Input field with email icon.
-    - **Password & Confirm Password**: Two password fields with lock icons.
-    - **Primary Action**: A "Create Account" button using the primary green theme.
+- **Form Card**: A white card containing registration fields and a primary "Create Account" button.
 - **UX**: Wrapped in `NestedScrollView` for better accessibility and keyboard handling.
 
 ---
@@ -33,21 +43,11 @@ The "Create Account" interface has been fully implemented in `create_account.xml
 The login interface has been fully implemented in `login.xml` based on the design specifications.
 
 #### 1. Color Palette Configuration
-Updated `res/values/colors.xml` with the following colors:
-- `primary_green` (#1B9B65): Main branding color.
-- `facebook_blue` (#1877F2): Official Facebook brand color.
-- `text_gray`, `border_gray`, `light_gray`: Various shades for UI hierarchy and borders.
+Updated `res/values/colors.xml` with standard branding colors.
 
-#### 2. Resource Development
-Created several custom drawable resources:
-- **Backgrounds**: `bg_rounded_top.xml`, `bg_logo_container.xml`, `bg_edittext.xml`, `bg_button_primary.xml`, `bg_button_facebook.xml`.
-- **Icons**: `ic_car.xml`, `ic_email.xml`, `ic_lock.xml`, `ic_google.xml`, `ic_facebook.xml`.
-
-#### 3. Layout Implementation (`login.xml`)
+#### 2. Layout Implementation (`login.xml`)
 - **Root**: `ConstraintLayout` with a primary green background.
-- **Header**: Contains the app logo, "VehicleCare" title, and slogan.
-- **Form Card**: A `NestedScrollView` containing a white card that covers 70% of the screen.
-    - **Action Buttons**: "Sign In" primary button, social login buttons (Google & Facebook).
+- **Form Card**: A white card covering 70% of the screen with login inputs and social buttons.
 
 ## Accessibility & Best Practices
 - Added `contentDescription` for all image resources.
