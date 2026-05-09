@@ -14,4 +14,10 @@
     <string name="continue_with_facebook">Continue with Facebook</string>
     <string name="dont_have_account">Don\'t have an account? </string>
     <string name="sign_up">Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="get_started">Get Started</string>
+    <string name="create_account_subtitle">Create your account to start tracking your vehicles</string>
+    <string name="full_name">Full Name</string>
+    <string name="full_name_hint">John Doe</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
