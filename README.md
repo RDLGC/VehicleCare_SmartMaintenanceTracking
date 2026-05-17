@@ -1,56 +1,45 @@
 # VehicleCare - Smart Maintenance Tracking
 
-This project is an Android application for tracking vehicle maintenance.
+VehicleCare is a comprehensive Android application designed to help vehicle owners track their maintenance schedules, service history, and vehicle health.
 
 ## Project Maintenance Rules
 - **Automatic Documentation**: The AI assistant is instructed to automatically update this `README.md` file after every task to reflect the latest changes and project state without being prompted by the user.
 
-## Recent Updates
+## Project Progress Summary
 
-### Logic Implementation: Navigation & Events
-Connected the UI screens using Intents and established a central event handling structure.
+### 1. Navigation & Logic (Latest)
+- **Centralized Event Handling**: Established `Events.java` to manage cross-activity interactions, starting with the Login to Create Account transition.
+- **Activity Framework**:
+    - `MainActivity.java`: Serves as the primary entry point (Login Screen).
+    - `CreateAccountActivity.java`: Handles user registration with integrated back navigation.
+- **Intent Routing**: Functional navigation between Login and Registration screens.
 
-#### 1. Activity Management
-- **Created `CreateAccountActivity.java`**: Handles the logic for the account creation screen, including a functional back button.
-- **Manifest Update**: Registered `CreateAccountActivity` in `AndroidManifest.xml`.
-- **MainActivity Update**: Configured `MainActivity` (acting as the Login screen) to initialize event listeners.
+### 2. UI/UX Implementation
+The project features a clean, modern interface using `Material Design 3` components and a consistent `primary_green` branding.
 
-#### 2. Event Handling (`Events.java`)
-- Created a dedicated `Events` class to decouple UI logic from Activity classes.
-- **`setupLoginEvents`**: Implemented an `OnClickListener` for `tvSignUp` in the login layout that triggers an `Intent` to navigate to `CreateAccountActivity`.
+#### Core Modules Implemented:
+- **Authentication**:
+    - **Login (`login.xml`)**: Welcome screen with email/password authentication and social login options.
+    - **Create Account (`create_account.xml`)**: Registration form with Full Name, Email, and Password fields.
+- **Vehicle Management**:
+    - **Add Vehicle (`add_vehicle.xml`)**: Features type selection (Car, Motorcycle, Truck) using `MaterialCardView`, and detailed input for year, mileage, and model.
+- **Maintenance Tracking**:
+    - **Add Service Record (`add_service.xml`)**: Comprehensive form to log service type, date, mileage, cost, and provider.
+- **Profile & Settings**:
+    - UI layouts for **Edit Profile**, **Change Password**, **Email Preferences**, and **Notifications** are established.
 
----
+### 3. Resource Configuration
+- **Color Palette**:
+    - `primary_green` (#1B9B65): Primary branding.
+    - `light_green` (#D1F5E8): Secondary accent.
+    - `facebook_blue` (#1877F2): Social branding.
+    - `white`, `light_gray`, `border_gray`: Structural colors.
+- **Assets**: 
+    - Custom vector library: `ic_car`, `ic_person`, `ic_email`, `ic_lock`, `ic_back`, `ic_google`, `ic_facebook`.
+    - Custom drawables for rounded cards, themed buttons, and bordered input fields.
 
-### UI Implementation: Create Account Screen
-The "Create Account" interface has been fully implemented in `create_account.xml`, matching the design requirements.
-
-#### 1. Resource Expansion
-- **Icons**: Added `ic_back.xml` for navigation and `ic_person.xml` for the name field.
-- **Colors**: Added `light_green` (#D1F5E8) for specialized UI elements.
-- **Drawables**: Created `bg_logo_create_account.xml` for the themed icon container.
-- **Strings**: Added resources for "Get Started", "Full Name", "Confirm Password", and other registration labels.
-
-#### 2. Layout Implementation (`create_account.xml`)
-- **Toolbar**: Features a custom toolbar with a back button and title.
-- **Header**: Includes a themed car logo container, "Get Started" header, and descriptive subtitle.
-- **Social Integration**: Reused stylized buttons for Google and Facebook login.
-- **Form Card**: A white card containing registration fields and a primary "Create Account" button.
-- **UX**: Wrapped in `NestedScrollView` for better accessibility and keyboard handling.
-
----
-
-### UI Implementation: Login Screen
-The login interface has been fully implemented in `login.xml` based on the design specifications.
-
-#### 1. Color Palette Configuration
-Updated `res/values/colors.xml` with standard branding colors.
-
-#### 2. Layout Implementation (`login.xml`)
-- **Root**: `ConstraintLayout` with a primary green background.
-- **Form Card**: A white card covering 70% of the screen with login inputs and social buttons.
-
-## Accessibility & Best Practices
-- Added `contentDescription` for all image resources.
-- Configured `autofillHints` for all relevant input fields (name, email, password).
-- Used `NestedScrollView` to ensure responsiveness.
-- Applied `app:tint` for XML-based icon styling.
+## Technical Standards
+- **Material Design**: Extensive use of `TextInputLayout`, `MaterialButton`, and `MaterialCardView`.
+- **Accessibility**: Standard inclusion of `contentDescription` for imagery and `autofillHints` for text inputs.
+- **Responsiveness**: Use of `NestedScrollView` across all form-heavy layouts to ensure compatibility with various screen sizes and keyboard overlays.
+- **Decoupled Logic**: UI event listeners are organized in a dedicated `Events` class to maintain clean activity code.
