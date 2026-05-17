@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FB">
+
+    <!-- Header Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clHeader"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/primary_green"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/back"
+            android:padding="12dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/settings"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivBack"
+            app:layout_constraintStart_toEndOf="@id/ivBack"
+            app:layout_constraintTop_toTopOf="@id/ivBack" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clHeader">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Account Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/account"
+                android:textColor="@color/text_gray"
+                android:textSize="12sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/border_gray"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Edit Profile -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/btnEditProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="12dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cvIconProfile"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#E8F5E9"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_person"
+                                android:contentDescription="@string/edit_profile"
+                                app:tint="@color/primary_green" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/tvEditProfile"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="@string/edit_profile"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toStartOf="@id/ivArrow1"
+                            app:layout_constraintStart_toEndOf="@id/cvIconProfile"
+                            app:layout_constraintTop_toTopOf="@id/cvIconProfile" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/edit_profile_desc"
+                            android:textColor="@color/text_gray"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toStartOf="@id/ivArrow1"
+                            app:layout_constraintStart_toStartOf="@id/tvEditProfile"
+                            app:layout_constraintTop_toBottomOf="@id/tvEditProfile" />
+
+                        <ImageView
+                            android:id="@+id/ivArrow1"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_media_next"
+                            android:contentDescription="@string/edit_profile"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/border_gray" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginStart="64dp"/>
+
+                    <!-- Email Preferences -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/btnEmailPrefs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="12dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cvIconEmail"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#E3F2FD"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_email"
+                                android:contentDescription="@string/email_preferences"
+                                app:tint="#2196F3" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/tvEmailPrefs"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="@string/email_preferences"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toStartOf="@id/ivArrow2"
+                            app:layout_constraintStart_toEndOf="@id/cvIconEmail"
+                            app:layout_constraintTop_toTopOf="@id/cvIconEmail" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/email_preferences_desc"
+                            android:textColor="@color/text_gray"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toStartOf="@id/ivArrow2"
+                            app:layout_constraintStart_toStartOf="@id/tvEmailPrefs"
+                            app:layout_constraintTop_toBottomOf="@id/tvEmailPrefs" />
+
+                        <ImageView
+                            android:id="@+id/ivArrow2"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_media_next"
+                            android:contentDescription="@string/email_preferences"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/border_gray" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginStart="64dp"/>
+
+                    <!-- Change Password -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/btnChangePassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="12dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cvIconLock"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#F3E5F5"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_lock"
+                                android:contentDescription="@string/change_password"
+                                app:tint="#9C27B0" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/tvChangePassword"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="@string/change_password"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toStartOf="@id/ivArrow3"
+                            app:layout_constraintStart_toEndOf="@id/cvIconLock"
+                            app:layout_constraintTop_toTopOf="@id/cvIconLock" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/change_password_desc"
+                            android:textColor="@color/text_gray"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toStartOf="@id/ivArrow3"
+                            app:layout_constraintStart_toStartOf="@id/tvChangePassword"
+                            app:layout_constraintTop_toBottomOf="@id/tvChangePassword" />
+
+                        <ImageView
+                            android:id="@+id/ivArrow3"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_media_next"
+                            android:contentDescription="@string/change_password"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/border_gray" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Preferences Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/preferences"
+                android:textColor="@color/text_gray"
+                android:textSize="12sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/border_gray"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Push Notifications -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cvIconNotif"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#FFF3E0"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:src="@android:drawable/ic_popup_reminder"
+                                android:contentDescription="@string/push_notifications"
+                                app:tint="#FF9800" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/tvNotif"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="@string/push_notifications"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toStartOf="@id/switchNotif"
+                            app:layout_constraintStart_toEndOf="@id/cvIconNotif"
+                            app:layout_constraintTop_toTopOf="@id/cvIconNotif" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/push_notifications_desc"
+                            android:textColor="@color/text_gray"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toStartOf="@id/switchNotif"
+                            app:layout_constraintStart_toStartOf="@id/tvNotif"
+                            app:layout_constraintTop_toBottomOf="@id/tvNotif" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switchNotif"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginStart="64dp"/>
+
+                    <!-- Dark Mode -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cvIconDark"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#E8EAF6"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:src="@android:drawable/star_on"
+                                android:contentDescription="@string/dark_mode"
+                                app:tint="#3F51B5" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/tvDarkMode"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="@string/dark_mode"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toStartOf="@id/switchDark"
+                            app:layout_constraintStart_toEndOf="@id/cvIconDark"
+                            app:layout_constraintTop_toTopOf="@id/cvIconDark" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dark_mode_desc"
+                            android:textColor="@color/text_gray"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toStartOf="@id/switchDark"
+                            app:layout_constraintStart_toStartOf="@id/tvDarkMode"
+                            app:layout_constraintTop_toBottomOf="@id/tvDarkMode" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switchDark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginStart="64dp"/>
+
+                    <!-- Language -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/btnLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="12dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cvIconLang"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#E0F2F1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:src="@android:drawable/ic_menu_compass"
+                                android:contentDescription="@string/language"
+                                app:tint="#009688" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/tvLanguage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="@string/language"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toStartOf="@id/tvLangSelected"
+                            app:layout_constraintStart_toEndOf="@id/cvIconLang"
+                            app:layout_constraintTop_toTopOf="@id/cvIconLang" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/language_desc"
+                            android:textColor="@color/text_gray"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toStartOf="@id/tvLangSelected"
+                            app:layout_constraintStart_toStartOf="@id/tvLanguage"
+                            app:layout_constraintTop_toBottomOf="@id/tvLanguage" />
+
+                        <TextView
+                            android:id="@+id/tvLangSelected"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/english_us"
+                            android:textColor="@color/text_gray"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/ivArrow4"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivArrow4"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_media_next"
+                            android:contentDescription="@string/language"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/border_gray" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Support Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/support"
+                android:textColor="@color/text_gray"
+                android:textSize="12sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/border_gray"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Help & Support -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/btnHelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="12dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cvIconHelp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#FFFDE7"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:src="@android:drawable/ic_menu_help"
+                                android:contentDescription="@string/help_support"
+                                app:tint="#FBC02D" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/tvHelp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="@string/help_support"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toStartOf="@id/ivArrow5"
+                            app:layout_constraintStart_toEndOf="@id/cvIconHelp"
+                            app:layout_constraintTop_toTopOf="@id/cvIconHelp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/help_support_desc"
+                            android:textColor="@color/text_gray"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toStartOf="@id/ivArrow5"
+                            app:layout_constraintStart_toStartOf="@id/tvHelp"
+                            app:layout_constraintTop_toBottomOf="@id/tvHelp" />
+
+                        <ImageView
+                            android:id="@+id/ivArrow5"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_media_next"
+                            android:contentDescription="@string/help_support"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/border_gray" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginStart="64dp"/>
+
+                    <!-- Privacy Policy -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/btnPrivacy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="12dp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cvIconPrivacy"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:cardBackgroundColor="#F5F5F5"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_lock"
+                                android:contentDescription="@string/privacy_policy"
+                                app:tint="@color/text_gray" />
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/tvPrivacy"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="@string/privacy_policy"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toStartOf="@id/ivArrow6"
+                            app:layout_constraintStart_toEndOf="@id/cvIconPrivacy"
+                            app:layout_constraintTop_toTopOf="@id/cvIconPrivacy" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/privacy_policy_desc"
+                            android:textColor="@color/text_gray"
+                            android:textSize="11sp"
+                            app:layout_constraintEnd_toStartOf="@id/ivArrow6"
+                            app:layout_constraintStart_toStartOf="@id/tvPrivacy"
+                            app:layout_constraintTop_toBottomOf="@id/tvPrivacy" />
+
+                        <ImageView
+                            android:id="@+id/ivArrow6"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@android:drawable/ic_media_next"
+                            android:contentDescription="@string/privacy_policy"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/border_gray" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Log Out Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="#FFF0F0"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/log_out"
+                android:textAllCaps="false"
+                android:textColor="#FF3B30"
+                app:cornerRadius="12dp"
+                app:icon="@android:drawable/ic_lock_power_off"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="#FF3B30"
+                app:strokeColor="#FFCDD2"
+                app:strokeWidth="1dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/version"
+                android:textColor="@color/text_gray"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

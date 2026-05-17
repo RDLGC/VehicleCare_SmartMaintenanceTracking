@@ -36,4 +36,169 @@
     <string name="cancel">Cancel</string>
     <string name="save_service">Save Service</string>
     <string name="back">Back</string>
+
+    <!-- Manage Vehicles Strings -->
+    <string name="my_vehicles">My Vehicles</string>
+    <string name="add_vehicle">Add Vehicle</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+
+    <!-- Add Vehicle Strings -->
+    <string name="vehicle_type">Vehicle Type</string>
+    <string name="car">Car</string>
+    <string name="motorcycle">Motorcycle</string>
+    <string name="truck">Truck</string>
+    <string name="vehicle_name">Vehicle Name</string>
+    <string name="vehicle_name_hint">e.g., Toyota Camry</string>
+    <string name="year">Year</string>
+    <string name="year_hint">2022</string>
+    <string name="model_trim">Model/Trim</string>
+    <string name="model_trim_hint">e.g., LE Sedan</string>
+
+    <!-- Profile Strings -->
+    <string name="my_profile">My Profile</string>
+    <string name="vehicles">Vehicles</string>
+    <string name="services">Services</string>
+    <string name="total_spent">Total Spent</string>
+    <string name="personal_information">PERSONAL INFORMATION</string>
+    <string name="phone">Phone</string>
+    <string name="location">Location</string>
+    <string name="member_since">Member Since</string>
+    <string name="manage_vehicles">Manage Vehicles</string>
+    <string name="vehicles_registered_count">%1$d vehicles registered</string>
+    <string name="edit_profile">Edit Profile</string>
+
+    <!-- Profile Placeholder Data -->
+    <string name="sample_user_name">John Doe</string>
+    <string name="sample_user_email">john.doe@example.com</string>
+    <string name="sample_vehicle_count">2</string>
+    <string name="sample_service_count">12</string>
+    <string name="sample_total_spent">$1245.96</string>
+    <string name="sample_phone">+1 (555) 123-4567</string>
+    <string name="sample_location">San Francisco, CA</string>
+    <string name="sample_member_since">January 2024</string>
+    <string name="my_vehicles_header">MY VEHICLES</string>
+
+    <!-- Reminder Strings -->
+    <string name="set_maintenance_reminder">Set Maintenance Reminder</string>
+    <string name="stay_on_top">Stay on top of maintenance</string>
+    <string name="reminder_info">Set reminders based on mileage, date, or both to never miss important service.</string>
+    <string name="maintenance_type">Maintenance Type</string>
+    <string name="reminder_based_on">Reminder Based On</string>
+    <string name="mileage_interval">Mileage Interval</string>
+    <string name="remind_mileage">Remind me every X miles</string>
+    <string name="specific_date">Specific Date</string>
+    <string name="remind_date">Remind me on a specific date</string>
+    <string name="both">Both</string>
+    <string name="whichever_comes_first">Whichever comes first</string>
+    <string name="mileage_hint_reminder">e.g., 5000</string>
+    <string name="miles_until_service">Miles until next service</string>
+    <string name="set_reminder">Set Reminder</string>
+
+    <!-- Service History Strings -->
+    <string name="service_history">Service History</string>
+    <string name="total_services">Total Services</string>
+    <string name="search_services">Search services...</string>
+    <string name="all_services">All Services</string>
+    <string name="oil_changes">Oil Changes</string>
+    <string name="tire_services">Tire Services</string>
+    <string name="brake_services">Brake Services</string>
+    <string name="inspections">Inspections</string>
+
+    <!-- History Card Sample Data -->
+    <string name="history_total_count">6</string>
+    <string name="history_total_spent">$824.96</string>
+    <string name="history_service_1">Annual Inspection</string>
+    <string name="history_vehicle_1">Toyota Camry</string>
+    <string name="history_cost_1">$89.99</string>
+    <string name="history_date_1">Apr 12, 2026</string>
+    <string name="history_location_1">AutoCare Center</string>
+    <string name="history_mileage_1">45,000 miles</string>
+    <string name="history_service_2">Brake Pad Replacement</string>
+    <string name="history_cost_2">$425.00</string>
+    <string name="history_date_2">Mar 8, 2026</string>
+    <string name="history_location_2">Toyota Service Center</string>
+    <string name="history_mileage_2">43,500 miles</string>
+
+    <!-- Notifications Strings -->
+    <string name="notifications_alerts">Notifications &amp; Alerts</string>
+    <string name="filter_by_vehicle">FILTER BY VEHICLE</string>
+    <string name="all_vehicles">All Vehicles</string>
+    <string name="sample_vehicle_1">Toyota Camry</string>
+    <string name="sample_vehicle_2">Honda CBR</string>
+    <string name="urgent">URGENT</string>
+    <string name="warning">WARNING</string>
+    <string name="info">INFO</string>
+    <string name="success">SUCCESS</string>
+    <string name="notif_title_1">Oil Change Overdue</string>
+    <string name="notif_desc_1">Your vehicle is 270 miles past the recommended oil change interval</string>
+    <string name="notif_detail_1">Toyota Camry  •  May 1, 2026</string>
+    <string name="notif_title_2">Tire Rotation Due Soon</string>
+    <string name="notif_desc_2">Recommended tire rotation in 1,500 miles</string>
+    <string name="notif_detail_2">Toyota Camry  •  May 15, 2026</string>
+    <string name="notif_title_3">Annual Inspection Reminder</string>
+    <string name="notif_desc_3">Annual inspection is due in 2 months</string>
+    <string name="notif_detail_3">Honda CBR  •  Jul 1, 2026</string>
+    <string name="notif_title_4">Service Completed</string>
+    <string name="notif_desc_4">Brake pad replacement was successfully recorded</string>
+    <string name="notif_detail_4">Toyota Camry  •  Mar 8, 2026</string>
+
+    <!-- Settings Strings -->
+    <string name="settings">Settings</string>
+    <string name="account">ACCOUNT</string>
+    <string name="edit_profile_desc">Update your personal information</string>
+    <string name="email_preferences">Email Preferences</string>
+    <string name="email_preferences_desc">Manage your email notifications</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_password_desc">Update your password</string>
+    <string name="preferences">PREFERENCES</string>
+    <string name="push_notifications">Push Notifications</string>
+    <string name="push_notifications_desc">Receive maintenance reminders</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode_desc">Switch to dark theme</string>
+    <string name="language">Language</string>
+    <string name="language_desc">English (US)</string>
+    <string name="english_us">English (US)</string>
+    <string name="support">SUPPORT</string>
+    <string name="help_support">Help &amp; Support</string>
+    <string name="help_support_desc">Get help with the app</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy_desc">View our privacy policy</string>
+    <string name="log_out">Log Out</string>
+    <string name="version">Version 1.0.0</string>
+
+    <!-- Edit Profile Strings -->
+    <string name="email_address">Email Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="save_changes">Save Changes</string>
+
+    <!-- Email Preferences Strings -->
+    <string name="manage_email_notifications">Manage Email Notifications</string>
+    <string name="choose_emails_desc">Choose what emails you\'d like to receive from us.</string>
+    <string name="service_reminders">Service Reminders</string>
+    <string name="service_reminders_desc">Upcoming maintenance notifications</string>
+    <string name="maintenance_alerts">Maintenance Alerts</string>
+    <string name="maintenance_alerts_desc">Urgent service notifications</string>
+    <string name="monthly_reports">Monthly Reports</string>
+    <string name="monthly_reports_desc">Service history summaries</string>
+    <string name="promotional_emails">Promotional Emails</string>
+    <string name="promotional_emails_desc">Service discounts and offers</string>
+    <string name="system_updates">System Updates</string>
+    <string name="system_updates_desc">App updates and new features</string>
+    <string name="save_preferences">Save Preferences</string>
+
+    <!-- Change Password Strings -->
+    <string name="secure_your_account">Secure Your Account</string>
+    <string name="secure_account_desc">Use a strong password with at least 8 characters.</string>
+    <string name="current_password">Current Password</string>
+    <string name="current_password_hint">Enter current password</string>
+    <string name="new_password">New Password</string>
+    <string name="new_password_hint">Enter new password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="confirm_new_password_hint">Confirm new password</string>
+    <string name="password_requirements">Password Requirements:</string>
+    <string name="req_8_chars">At least 8 characters long</string>
+    <string name="req_uppercase">Contains uppercase letter</string>
+    <string name="req_number">Contains number</string>
+    <string name="update_password">Update Password</string>
 </resources>
