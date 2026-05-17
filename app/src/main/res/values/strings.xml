@@ -20,4 +20,20 @@
     <string name="full_name">Full Name</string>
     <string name="full_name_hint">John Doe</string>
     <string name="confirm_password">Confirm Password</string>
+
+    <!-- Add Service Strings -->
+    <string name="add_service_record">Add Service Record</string>
+    <string name="service_type">Service Type</string>
+    <string name="date">Date</string>
+    <string name="mileage">Mileage</string>
+    <string name="mileage_hint">45,000</string>
+    <string name="cost">Cost</string>
+    <string name="cost_hint">0.00</string>
+    <string name="service_provider">Service Provider</string>
+    <string name="service_provider_hint">e.g., AutoCare Center</string>
+    <string name="notes_optional">Notes (Optional)</string>
+    <string name="notes_hint">Add any additional notes...</string>
+    <string name="cancel">Cancel</string>
+    <string name="save_service">Save Service</string>
+    <string name="back">Back</string>
 </resources>
