@@ -201,4 +201,7 @@
     <string name="req_uppercase">Contains uppercase letter</string>
     <string name="req_number">Contains number</string>
     <string name="update_password">Update Password</string>
+
+    <string name="supabase_url">https://adzsedfpbecbbthhimfz.supabase.co</string>
+    <string name="supabase_key">sb_publishable_Tv2Nmk7PS96A--MmtW1ucg_cy6upj97</string>
 </resources>

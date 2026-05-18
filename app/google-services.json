@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "225081560096",
+    "project_id": "vehiclecare-65f49",
+    "storage_bucket": "vehiclecare-65f49.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225081560096:android:863ab77792f0bcc8058045",
+        "android_client_info": {
+          "package_name": "com.example.vehiclecare_smartmaintenancetracking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdClPCSvbfX0r2awFR0XMFGK4LVD1aLGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

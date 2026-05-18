@@ -8,38 +8,33 @@ VehicleCare is a comprehensive Android application designed to help vehicle owne
 ## Project Progress Summary
 
 ### 1. Navigation & Logic (Latest)
-- **Centralized Event Handling**: Established `Events.java` to manage cross-activity interactions, starting with the Login to Create Account transition.
-- **Activity Framework**:
-    - `MainActivity.java`: Serves as the primary entry point (Login Screen).
-    - `CreateAccountActivity.java`: Handles user registration with integrated back navigation.
-- **Intent Routing**: Functional navigation between Login and Registration screens.
+- **Vehicle Management Implementation**:
+    - **Data Layer**: Implemented `VehicleEntity`, `VehicleDao`, and expanded `AppDatabase` for local vehicle storage.
+    - **Remote Sync**: Updated `SupabaseApi` with endpoints for adding and fetching vehicles.
+    - **Business Logic**: Created `VehicleRepository` and `VehicleViewModel` to manage the lifecycle of vehicle data, ensuring offline-first availability with remote synchronization.
+    - **Integrity**: Enforced vehicle type constraints ('Car', 'Motorcycle', 'Truck') at both the database (SQL CHECK) and application levels.
+- **Authentication Flow**: 
+    - Full integration of **Firebase Auth** and **Supabase Profiles**.
+    - Robust sync logic with detailed error reporting and RLS compatibility.
+- **Centralized Event Handling**: Decoupled UI and logic using the `Events` class.
 
 ### 2. UI/UX Implementation
-The project features a clean, modern interface using `Material Design 3` components and a consistent `primary_green` branding.
+Modern interface using `Material Design 3` and `primary_green` branding.
 
 #### Core Modules Implemented:
-- **Authentication**:
-    - **Login (`login.xml`)**: Welcome screen with email/password authentication and social login options.
-    - **Create Account (`create_account.xml`)**: Registration form with Full Name, Email, and Password fields.
-- **Vehicle Management**:
-    - **Add Vehicle (`add_vehicle.xml`)**: Features type selection (Car, Motorcycle, Truck) using `MaterialCardView`, and detailed input for year, mileage, and model.
-- **Maintenance Tracking**:
-    - **Add Service Record (`add_service.xml`)**: Comprehensive form to log service type, date, mileage, cost, and provider.
-- **Profile & Settings**:
-    - UI layouts for **Edit Profile**, **Change Password**, **Email Preferences**, and **Notifications** are established.
+- **Authentication**: Login and Create Account screens.
+- **Vehicle Management**: Add Vehicle interface with type-specific card selection.
+- **Maintenance Tracking**: Comprehensive service record logging form.
 
 ### 3. Resource Configuration
-- **Color Palette**:
-    - `primary_green` (#1B9B65): Primary branding.
-    - `light_green` (#D1F5E8): Secondary accent.
-    - `facebook_blue` (#1877F2): Social branding.
-    - `white`, `light_gray`, `border_gray`: Structural colors.
-- **Assets**: 
-    - Custom vector library: `ic_car`, `ic_person`, `ic_email`, `ic_lock`, `ic_back`, `ic_google`, `ic_facebook`.
-    - Custom drawables for rounded cards, themed buttons, and bordered input fields.
+- **Cloud Config**: Placeholder system for Supabase URL/Key and Firebase `google-services.json` integration.
+
+## System Architecture
+- **Presentation**: MVVM + LiveData + XML.
+- **Domain**: Repository pattern for Auth and Vehicles.
+- **Data**: Room (Local), Supabase (Remote), Firebase (Auth & Messaging).
 
 ## Technical Standards
-- **Material Design**: Extensive use of `TextInputLayout`, `MaterialButton`, and `MaterialCardView`.
-- **Accessibility**: Standard inclusion of `contentDescription` for imagery and `autofillHints` for text inputs.
-- **Responsiveness**: Use of `NestedScrollView` across all form-heavy layouts to ensure compatibility with various screen sizes and keyboard overlays.
-- **Decoupled Logic**: UI event listeners are organized in a dedicated `Events` class to maintain clean activity code.
+- **Sync Strategy**: Array-based JSON inserts for Supabase compatibility.
+- **Security**: Row Level Security (RLS) integration for profile and vehicle data.
+- **Responsiveness**: `NestedScrollView` implementation across all forms.

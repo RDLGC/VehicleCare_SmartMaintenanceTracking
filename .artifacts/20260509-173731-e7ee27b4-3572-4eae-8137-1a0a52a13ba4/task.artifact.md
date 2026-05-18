@@ -1,0 +1,21 @@
+# Task Management
+
+- [x] Research existing build configuration
+- [x] Create implementation plan for backend dependencies
+- [x] Update `libs.versions.toml` with backend libraries
+- [x] Update `app/build.gradle.kts` with backend dependencies
+- [x] Run Gradle Sync
+- [x] Update `README.md` with new architecture details
+- [x] Initialize Authentication and Profile Schema
+	- [x] Define `profiles` table for Supabase (Manual)
+	- [x] Define `User` entity for Room
+- [x] Initialize Room Database and Entities
+	- [x] Create `UserEntity` with GSON annotations
+	- [x] Create `UserDao`
+	- [x] Create `AppDatabase`
+- [x] Configure Retrofit for Supabase
+	- [x] Create `SupabaseApi` interface
+- [x] Configure Google Services Plugin
+	- [x] Add plugin to `libs.versions.toml`
+	- [x] Update project and app `build.gradle.kts`
+- [ ] Implement Firebase Auth logic in Repository

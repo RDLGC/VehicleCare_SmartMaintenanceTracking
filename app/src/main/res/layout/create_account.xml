@@ -159,6 +159,7 @@
                     android:textSize="14sp" />
 
                 <LinearLayout
+                    android:id="@+id/nameInputContainer"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
@@ -197,6 +198,7 @@
                     android:textSize="14sp" />
 
                 <LinearLayout
+                    android:id="@+id/emailInputContainer"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
@@ -235,6 +237,7 @@
                     android:textSize="14sp" />
 
                 <LinearLayout
+                    android:id="@+id/passwordInputContainer"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
@@ -273,6 +276,7 @@
                     android:textSize="14sp" />
 
                 <LinearLayout
+                    android:id="@+id/confirmPasswordContainer"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
