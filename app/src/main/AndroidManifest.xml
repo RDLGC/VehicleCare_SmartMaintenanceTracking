@@ -26,6 +26,9 @@
         <activity
             android:name=".AddVehicleActivity"
             android:exported="false" />
+        <activity
+            android:name=".ManageVehiclesActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
