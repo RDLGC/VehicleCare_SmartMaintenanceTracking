@@ -22,6 +22,7 @@ public class VehicleRepository {
     
     private final MutableLiveData<String> errorLiveData = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loadingLiveData = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> addSuccessLiveData = new MutableLiveData<>();
 
     public VehicleRepository(SupabaseApi supabaseApi, VehicleDao vehicleDao) {
         this.supabaseApi = supabaseApi;
@@ -35,6 +36,7 @@ public class VehicleRepository {
 
     public void addVehicle(String userId, String name, String type, Integer year, Integer mileage, String modelTrim, String supabaseKey) {
         loadingLiveData.setValue(true);
+        addSuccessLiveData.setValue(false);
         
         Map<String, Object> vehicleData = new HashMap<>();
         vehicleData.put("user_id", userId);
@@ -53,7 +55,7 @@ public class VehicleRepository {
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         loadingLiveData.setValue(false);
                         if (response.isSuccessful() || response.code() == 201) {
-                            // Fetch again to sync local with remote (or just insert manually)
+                            addSuccessLiveData.setValue(true);
                             refreshVehicles(userId, supabaseKey);
                         } else {
                             errorLiveData.setValue("Failed to add vehicle: " + response.code());
@@ -89,4 +91,5 @@ public class VehicleRepository {
 
     public LiveData<String> getError() { return errorLiveData; }
     public LiveData<Boolean> getLoading() { return loadingLiveData; }
+    public LiveData<Boolean> getAddSuccess() { return addSuccessLiveData; }
 }

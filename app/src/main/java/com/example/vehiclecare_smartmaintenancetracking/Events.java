@@ -64,4 +64,9 @@ public class Events {
     private static boolean validateInput(String email, String password) {
         return !email.isEmpty() && !password.isEmpty();
     }
+
+    public static void setupAddVehicleEntry(final AppCompatActivity activity) {
+        // This is a placeholder for wherever the user triggers the "Add Vehicle" screen
+        // For example, if there's a button in MainActivity or a Dashboard
+    }
 }

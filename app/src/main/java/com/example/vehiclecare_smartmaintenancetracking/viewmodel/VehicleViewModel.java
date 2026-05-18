@@ -44,4 +44,5 @@ public class VehicleViewModel extends AndroidViewModel {
 
     public LiveData<String> getError() { return vehicleRepository.getError(); }
     public LiveData<Boolean> isLoading() { return vehicleRepository.getLoading(); }
+    public LiveData<Boolean> getAddSuccess() { return vehicleRepository.getAddSuccess(); }
 }
