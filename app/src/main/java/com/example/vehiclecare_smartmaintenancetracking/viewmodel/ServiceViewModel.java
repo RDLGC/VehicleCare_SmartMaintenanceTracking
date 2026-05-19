@@ -46,6 +46,10 @@ public class ServiceViewModel extends AndroidViewModel {
         serviceRepository.refreshAllServices(supabaseKey);
     }
 
+    public void deleteService(String serviceId, String supabaseKey) {
+        serviceRepository.deleteService(serviceId, supabaseKey);
+    }
+
     public LiveData<String> getError() { return serviceRepository.getError(); }
     public LiveData<Boolean> isLoading() { return serviceRepository.getLoading(); }
     public LiveData<Boolean> getAddSuccess() { return serviceRepository.getAddSuccess(); }

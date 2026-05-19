@@ -84,6 +84,10 @@ public class ReminderRepository {
                 });
     }
 
+    public LiveData<List<ReminderEntity>> getReminders(String userId) {
+        return reminderDao.getRemindersForUser(userId);
+    }
+
     public LiveData<String> getError() { return errorLiveData; }
     public LiveData<Boolean> getLoading() { return loadingLiveData; }
     public LiveData<Boolean> getAddSuccess() { return addSuccessLiveData; }

@@ -14,6 +14,15 @@ import java.util.Locale;
 
 public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceViewHolder> {
     private List<ServiceEntity> services = new ArrayList<>();
+    private OnServiceLongClickListener longClickListener;
+
+    public interface OnServiceLongClickListener {
+        void onServiceLongClick(ServiceEntity service);
+    }
+
+    public void setOnServiceLongClickListener(OnServiceLongClickListener listener) {
+        this.longClickListener = listener;
+    }
 
     public void setServices(List<ServiceEntity> services) {
         this.services = services;
@@ -35,6 +44,14 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
         holder.tvDate.setText(service.getServiceDate());
         holder.tvProvider.setText(service.getProvider());
         holder.tvMileage.setText(String.format(Locale.US, "%,d miles", service.getMileage()));
+
+        holder.itemView.setOnLongClickListener(v -> {
+            if (longClickListener != null) {
+                longClickListener.onServiceLongClick(service);
+                return true;
+            }
+            return false;
+        });
         
         holder.tvVehicle.setText("Vehicle ID: " + (service.getVehicleId() != null && service.getVehicleId().length() > 8 
                 ? service.getVehicleId().substring(0, 8) + "..." : service.getVehicleId()));

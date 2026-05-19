@@ -42,6 +42,10 @@ public class VehicleViewModel extends AndroidViewModel {
         vehicleRepository.refreshVehicles(userId, supabaseKey);
     }
 
+    public void deleteVehicle(String vehicleId, String supabaseKey) {
+        vehicleRepository.deleteVehicle(vehicleId, supabaseKey);
+    }
+
     public LiveData<String> getError() { return vehicleRepository.getError(); }
     public LiveData<Boolean> isLoading() { return vehicleRepository.getLoading(); }
     public LiveData<Boolean> getAddSuccess() { return vehicleRepository.getAddSuccess(); }

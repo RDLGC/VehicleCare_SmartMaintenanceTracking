@@ -11,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PATCH;
+import retrofit2.http.DELETE;
 import retrofit2.http.Query;
 
 public interface SupabaseApi {
@@ -95,5 +96,19 @@ public interface SupabaseApi {
             @Header("Content-Type") String contentType,
             @Header("Prefer") String prefer,
             @Body List<java.util.Map<String, Object>> reminderList
+    );
+
+    @DELETE("rest/v1/vehicles")
+    Call<Void> deleteVehicle(
+            @Header("apikey") String apiKey,
+            @Header("Authorization") String authToken,
+            @Query("id") String vehicleId
+    );
+
+    @DELETE("rest/v1/services")
+    Call<Void> deleteService(
+            @Header("apikey") String apiKey,
+            @Header("Authorization") String authToken,
+            @Query("id") String serviceId
     );
 }

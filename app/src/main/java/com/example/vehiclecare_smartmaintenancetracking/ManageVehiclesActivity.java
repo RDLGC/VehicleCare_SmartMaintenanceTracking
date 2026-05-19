@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.vehiclecare_smartmaintenancetracking.adapter.VehicleAdapter;
+import com.example.vehiclecare_smartmaintenancetracking.models.VehicleEntity;
 import com.example.vehiclecare_smartmaintenancetracking.viewmodel.VehicleViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,8 +62,17 @@ public class ManageVehiclesActivity extends AppCompatActivity {
         adapter = new VehicleAdapter();
         rvVehicles.setAdapter(adapter);
         
-        adapter.setOnVehicleClickListener(vehicle -> {
-            // Handle vehicle click (e.g., show details or service history)
+        adapter.setOnVehicleClickListener(new VehicleAdapter.OnVehicleClickListener() {
+            @Override
+            public void onVehicleClick(VehicleEntity vehicle) {
+                // Handle vehicle click
+            }
+
+            @Override
+            public void onDeleteClick(VehicleEntity vehicle) {
+                String supabaseKey = getString(R.string.supabase_key);
+                vehicleViewModel.deleteVehicle(vehicle.getId(), supabaseKey);
+            }
         });
     }
 

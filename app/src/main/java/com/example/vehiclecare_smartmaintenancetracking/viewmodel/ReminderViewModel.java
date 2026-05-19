@@ -4,6 +4,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import com.example.vehiclecare_smartmaintenancetracking.models.ReminderEntity;
+import java.util.List;
 import com.example.vehiclecare_smartmaintenancetracking.database.AppDatabase;
 import com.example.vehiclecare_smartmaintenancetracking.network.SupabaseApi;
 import com.example.vehiclecare_smartmaintenancetracking.repository.ReminderRepository;
@@ -30,6 +32,14 @@ public class ReminderViewModel extends AndroidViewModel {
 
     public void addReminder(String userId, String vehicleId, String maintenanceType, String reminderType, Integer mileage, String date, String notes, String supabaseKey) {
         reminderRepository.addReminder(userId, vehicleId, maintenanceType, reminderType, mileage, date, notes, supabaseKey);
+    }
+
+    public LiveData<List<ReminderEntity>> getReminders(String userId) {
+        return reminderRepository.getReminders(userId);
+    }
+
+    public void refreshReminders(String userId, String supabaseKey) {
+        reminderRepository.refreshReminders(userId, supabaseKey);
     }
 
     public LiveData<String> getError() { return reminderRepository.getError(); }

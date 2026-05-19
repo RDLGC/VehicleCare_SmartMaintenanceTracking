@@ -18,6 +18,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
 
     public interface OnVehicleClickListener {
         void onVehicleClick(VehicleEntity vehicle);
+        void onDeleteClick(VehicleEntity vehicle);
     }
 
     public void setOnVehicleClickListener(OnVehicleClickListener listener) {
@@ -57,6 +58,14 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
             if (listener != null) {
                 listener.onVehicleClick(current);
             }
+        });
+
+        holder.itemView.setOnLongClickListener(v -> {
+            if (listener != null) {
+                listener.onDeleteClick(current);
+                return true;
+            }
+            return false;
         });
     }
 

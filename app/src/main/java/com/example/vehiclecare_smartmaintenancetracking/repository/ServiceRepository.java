@@ -92,6 +92,28 @@ public class ServiceRepository {
                 });
     }
 
+    public void deleteService(String serviceId, String supabaseKey) {
+        loadingLiveData.setValue(true);
+        supabaseApi.deleteService(supabaseKey, "Bearer " + supabaseKey, "eq." + serviceId)
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        loadingLiveData.setValue(false);
+                        if (response.isSuccessful()) {
+                            executorService.execute(serviceDao::clearAll);
+                        } else {
+                            errorLiveData.setValue("Delete failed: " + response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        loadingLiveData.setValue(false);
+                        errorLiveData.setValue(t.getMessage());
+                    }
+                });
+    }
+
     public LiveData<String> getError() { return errorLiveData; }
     public LiveData<Boolean> getLoading() { return loadingLiveData; }
     public LiveData<Boolean> getAddSuccess() { return addSuccessLiveData; }
