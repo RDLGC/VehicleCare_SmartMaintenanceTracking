@@ -39,6 +39,11 @@ public class LandingActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddServiceActivity.class);
             startActivity(intent);
         });
+
+        findViewById(R.id.cardSetReminder).setOnClickListener(v -> {
+            Intent intent = new Intent(this, SetReminderActivity.class);
+            startActivity(intent);
+        });
         
         findViewById(R.id.tvViewAllHistory).setOnClickListener(v -> {
             Intent intent = new Intent(this, ServiceHistoryActivity.class);

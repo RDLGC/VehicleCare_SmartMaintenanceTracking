@@ -8,6 +8,7 @@ import com.example.vehiclecare_smartmaintenancetracking.models.UserEntity;
 import com.example.vehiclecare_smartmaintenancetracking.network.SupabaseApi;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -81,6 +82,7 @@ public class AuthRepository {
                         if (response.isSuccessful() || response.code() == 201) {
                             UserEntity localUser = new UserEntity(uid, name, email, null, System.currentTimeMillis());
                             saveUserLocally(localUser);
+                            updateFcmToken(uid, supabaseKey);
                             userLiveData.setValue(firebaseAuth.getCurrentUser());
                             callback.onSuccess("Account created! Welcome " + email);
                         } else {
@@ -106,6 +108,22 @@ public class AuthRepository {
                         callback.onError(t.getMessage());
                     }
                 });
+    }
+
+    private void updateFcmToken(String uid, String supabaseKey) {
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                String token = task.getResult();
+                java.util.Map<String, Object> update = new java.util.HashMap<>();
+                update.put("fcm_token", token);
+                
+                supabaseApi.updateProfile(supabaseKey, "Bearer " + supabaseKey, "application/json", "eq." + uid, update)
+                        .enqueue(new Callback<Void>() {
+                            @Override public void onResponse(Call<Void> call, Response<Void> response) {}
+                            @Override public void onFailure(Call<Void> call, Throwable t) {}
+                        });
+            }
+        });
     }
 
     public void signIn(String email, String password, String supabaseKey, AuthCallback callback) {

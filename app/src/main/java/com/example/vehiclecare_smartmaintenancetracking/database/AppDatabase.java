@@ -7,14 +7,16 @@ import androidx.room.RoomDatabase;
 import com.example.vehiclecare_smartmaintenancetracking.models.UserEntity;
 import com.example.vehiclecare_smartmaintenancetracking.models.VehicleEntity;
 import com.example.vehiclecare_smartmaintenancetracking.models.ServiceEntity;
+import com.example.vehiclecare_smartmaintenancetracking.models.ReminderEntity;
 
-@Database(entities = {UserEntity.class, VehicleEntity.class, ServiceEntity.class}, version = 2, exportSchema = false)
+@Database(entities = {UserEntity.class, VehicleEntity.class, ServiceEntity.class, ReminderEntity.class}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static volatile AppDatabase INSTANCE;
 
     public abstract UserDao userDao();
     public abstract VehicleDao vehicleDao();
     public abstract ServiceDao serviceDao();
+    public abstract ReminderDao reminderDao();
 
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {

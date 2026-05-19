@@ -8,33 +8,32 @@ VehicleCare is a comprehensive Android application designed to help vehicle owne
 ## Project Progress Summary
 
 ### 1. Navigation & Logic (Latest)
-- **Service History Module Implementation**:
-    - **Data Layer**: Created `ServiceEntity` and `ServiceDao` for robust tracking of maintenance events (Type, Date, Mileage, Cost, Provider).
-    - **Database Update**: Expanded `AppDatabase` to include the `services` table with support for total cost aggregation.
-    - **Cloud Synchronization**: Updated `SupabaseApi` with specialized endpoints for global service fetching and targeted record insertion.
-    - **MVVM Integration**: Developed `ServiceRepository` and `ServiceViewModel` to coordinate between local persistence and the remote Supabase database.
-- **Vehicle Management Dashboard**:
-    - Full `AddVehicleActivity` integration with interactive type selection.
-    - `ManageVehiclesActivity` with dynamic `RecyclerView` and automated background sync.
-- **Authentication**: Firebase Auth and Supabase Profiles fully integrated with automated cross-cloud profile creation.
+- **Proactive Maintenance Reminders (Phase 2)**:
+    - **Smart Alerts**: Implemented `ReminderEntity`, `ReminderDao`, and updated `AppDatabase` (v3) to support custom mileage and date-based notifications.
+    - **Cloud Sync**: Updated `SupabaseApi` with endpoints for managing reminders and established the `ReminderRepository` for cross-platform data integrity.
+    - **Push Notifications**: Integrated **Firebase Cloud Messaging (FCM)**. The app now automatically captures the device's FCM token upon login/signup and syncs it to the Supabase profile for remote alerting.
+    - **FCM Service**: Created `FCMService.java` to handle background data messages and display high-priority maintenance notifications.
+    - **UI Integration**: Completed `SetReminderActivity.java` with a vehicle selection dropdown and interactive reminder-type selector.
+- **Service History Module**: Full tracking of maintenance events with aggregate cost analysis and vehicle-specific logging.
+- **Vehicle Management Dashboard**: Dynamic garage management with interactive type selection and background sync.
 
 ### 2. UI/UX Implementation
 Modern interface using `Material Design 3` and `primary_green` branding.
 
 #### Core Modules Implemented:
-- **Service Tracking**: Backend logic ready for aggregate history and per-vehicle filtering.
-- **Vehicle Management**: Dynamic garage list with offline support.
-- **Authentication**: Login and Account Creation flows.
+- **Smart Features**: "Set Reminder" interface with dynamic input handling.
+- **Service Tracking**: aggregate history and per-vehicle dashboard stats.
+- **Vehicle Management**: Dynamic RecyclerView-based garage list.
 
 ### 3. Resource Configuration
-- **Cloud Infrastructure**: Integration with Firebase and Supabase.
+- **Cloud Infrastructure**: Full integration with Firebase (Auth/Messaging) and Supabase (PostgreSQL).
 
 ## System Architecture
 - **Presentation**: MVVM + LiveData + RecyclerView.
-- **Domain**: Repository pattern for Auth, Vehicles, and Services.
-- **Data**: Room (Local), Supabase (Remote), Firebase (Auth).
+- **Domain**: Repository pattern for Auth, Vehicles, Services, and Reminders.
+- **Data**: Room (Local), Supabase (Remote), Firebase (Auth & FCM).
 
 ## Technical Standards
-- **Relational Integrity**: Cascade delete support for services when vehicles are removed.
-- **Financial Tracking**: `DECIMAL` support for accurate cost logging.
-- **Performance**: Single-thread executor for background DB operations.
+- **Relational Integrity**: Foreign key constraints with cascade delete for services and reminders.
+- **Proactive Sync**: Real-time FCM token management to enable server-side maintenance triggers.
+- **Performance**: Asynchronous data handling via Single-thread executors and Retrofit callbacks.
