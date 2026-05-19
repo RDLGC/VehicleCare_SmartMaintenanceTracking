@@ -123,7 +123,8 @@
                                 android:layout_height="match_parent"
                                 android:padding="12dp"
                                 android:src="@drawable/ic_car"
-                                app:tint="@color/primary_green" />
+                                app:tint="@color/primary_green"
+                                android:contentDescription="@null" />
                         </com.google.android.material.card.MaterialCardView>
 
                         <TextView
@@ -148,6 +149,7 @@
                             app:layout_constraintTop_toBottomOf="@id/tvCarName"/>
 
                         <TextView
+                            android:id="@+id/btnChangeVehicle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Change"
@@ -172,9 +174,16 @@
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:gravity="center">
-                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_compass" app:tint="@color/text_gray" android:layout_marginBottom="4dp"/>
+                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_compass" app:tint="@color/text_gray" android:layout_marginBottom="4dp" android:contentDescription="@null" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mileage" android:textColor="@color/text_gray" android:textSize="12sp"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="45,230 mi" android:fontFamily="sans-serif-black" android:textSize="15sp" android:textColor="@color/black"/>
+                            <TextView
+                                android:id="@+id/tvLandingMileage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0 mi"
+                                android:fontFamily="sans-serif-black"
+                                android:textSize="15sp"
+                                android:textColor="@color/black"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -183,7 +192,7 @@
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:gravity="center">
-                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/btn_star_big_on" app:tint="@color/text_gray" android:layout_marginBottom="4dp"/>
+                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/btn_star_big_on" app:tint="@color/text_gray" android:layout_marginBottom="4dp" android:contentDescription="@null" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fuel Avg" android:textColor="@color/text_gray" android:textSize="12sp"/>
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="32.5 mpg" android:fontFamily="sans-serif-black" android:textSize="15sp" android:textColor="@color/black"/>
                         </LinearLayout>
@@ -194,9 +203,16 @@
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:gravity="center">
-                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_agenda" app:tint="@color/text_gray" android:layout_marginBottom="4dp"/>
+                            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@android:drawable/ic_menu_agenda" app:tint="@color/text_gray" android:layout_marginBottom="4dp" android:contentDescription="@null" />
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Services" android:textColor="@color/text_gray" android:textSize="12sp"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12" android:fontFamily="sans-serif-black" android:textSize="15sp" android:textColor="@color/black"/>
+                            <TextView
+                                android:id="@+id/tvLandingServiceCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:fontFamily="sans-serif-black"
+                                android:textSize="15sp"
+                                android:textColor="@color/black"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -222,6 +238,7 @@
                 android:weightSum="2">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardAddService"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -294,6 +311,7 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
+                    android:id="@+id/tvViewAllMaintenance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="View All"
@@ -337,7 +355,8 @@
                                 android:layout_height="match_parent"
                                 android:padding="12dp"
                                 android:src="@android:drawable/ic_menu_manage"
-                                app:tint="#FF3B30"/>
+                                app:tint="#FF3B30"
+                                android:contentDescription="@null" />
                         </com.google.android.material.card.MaterialCardView>
                         <TextView
                             android:id="@+id/tvOilTitle"
@@ -395,7 +414,8 @@
                                 android:layout_height="match_parent"
                                 android:padding="12dp"
                                 android:src="@android:drawable/ic_menu_my_calendar"
-                                app:tint="#FFCC00"/>
+                                app:tint="#FFCC00"
+                                android:contentDescription="@null" />
                         </com.google.android.material.card.MaterialCardView>
                         <TextView
                             android:id="@+id/tvTireTitle"
@@ -423,7 +443,8 @@
                             app:tint="#D1D1D6"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:contentDescription="@null" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginHorizontal="16dp"/>
@@ -447,7 +468,8 @@
                                 android:layout_height="match_parent"
                                 android:padding="12dp"
                                 android:src="@android:drawable/ic_menu_compass"
-                                app:tint="@color/primary_green"/>
+                                app:tint="@color/primary_green"
+                                android:contentDescription="@null" />
                         </com.google.android.material.card.MaterialCardView>
                         <TextView
                             android:id="@+id/tvCoolantTitle"
@@ -475,7 +497,8 @@
                             app:tint="#D1D1D6"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:contentDescription="@null" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -498,6 +521,7 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
+                    android:id="@+id/tvViewAllHistory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="View All"

@@ -1,6 +1,7 @@
 package com.example.vehiclecare_smartmaintenancetracking.models;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.google.gson.annotations.SerializedName;
@@ -10,27 +11,35 @@ public class VehicleEntity {
     @PrimaryKey
     @NonNull
     @SerializedName("id")
+    @ColumnInfo(name = "id")
     private String id;
 
     @SerializedName("user_id")
+    @ColumnInfo(name = "user_id")
     private String userId;
 
     @SerializedName("name")
+    @ColumnInfo(name = "name")
     private String name;
 
     @SerializedName("type")
+    @ColumnInfo(name = "type")
     private String type; // 'Car', 'Motorcycle', 'Truck'
 
     @SerializedName("year")
+    @ColumnInfo(name = "year")
     private Integer year;
 
     @SerializedName("mileage")
+    @ColumnInfo(name = "mileage")
     private Integer mileage;
 
     @SerializedName("model_trim")
+    @ColumnInfo(name = "model_trim")
     private String modelTrim;
 
     @SerializedName("created_at")
+    @ColumnInfo(name = "created_at")
     private String createdAt;
 
     public VehicleEntity(@NonNull String id, String userId, String name, String type, Integer year, Integer mileage, String modelTrim, String createdAt) {

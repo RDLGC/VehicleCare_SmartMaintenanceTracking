@@ -11,7 +11,7 @@ public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUser(UserEntity user);
 
-    @Query("SELECT * FROM users WHERE firebaseUid = :uid LIMIT 1")
+    @Query("SELECT * FROM users WHERE firebase_uid = :uid LIMIT 1")
     UserEntity getUser(String uid);
 
     @Query("DELETE FROM users")

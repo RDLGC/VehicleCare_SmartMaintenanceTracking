@@ -1,6 +1,7 @@
 package com.example.vehiclecare_smartmaintenancetracking.models;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.google.gson.annotations.SerializedName;
@@ -10,17 +11,22 @@ public class UserEntity {
     @PrimaryKey
     @NonNull
     @SerializedName("firebase_uid")
+    @ColumnInfo(name = "firebase_uid")
     private String firebaseUid;
 
     @SerializedName("full_name")
+    @ColumnInfo(name = "full_name")
     private String fullName;
 
     @SerializedName("email")
+    @ColumnInfo(name = "email")
     private String email;
 
     @SerializedName("avatar_url")
+    @ColumnInfo(name = "avatar_url")
     private String avatarUrl;
 
+    @ColumnInfo(name = "last_sync")
     private long lastSync;
 
     public UserEntity(@NonNull String firebaseUid, String fullName, String email, String avatarUrl, long lastSync) {

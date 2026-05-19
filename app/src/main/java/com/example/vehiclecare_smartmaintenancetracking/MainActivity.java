@@ -42,7 +42,11 @@ public class MainActivity extends AppCompatActivity {
             if (message != null) {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
                 authViewModel.setSuccessMessage(null);
-                // Navigate to dashboard if needed
+                
+                // Navigate to Landing page on successful login
+                Intent intent = new Intent(this, LandingActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

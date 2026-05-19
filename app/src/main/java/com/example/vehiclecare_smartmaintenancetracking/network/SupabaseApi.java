@@ -2,6 +2,7 @@ package com.example.vehiclecare_smartmaintenancetracking.network;
 
 import com.example.vehiclecare_smartmaintenancetracking.models.UserEntity;
 import com.example.vehiclecare_smartmaintenancetracking.models.VehicleEntity;
+import com.example.vehiclecare_smartmaintenancetracking.models.ServiceEntity;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -43,5 +44,28 @@ public interface SupabaseApi {
             @Header("Content-Type") String contentType,
             @Header("Prefer") String prefer,
             @Body List<java.util.Map<String, Object>> vehicleList
+    );
+
+    // Service Record endpoints
+    @GET("rest/v1/services")
+    Call<List<ServiceEntity>> getServices(
+            @Header("apikey") String apiKey,
+            @Header("Authorization") String authToken,
+            @Query("vehicle_id") String vehicleId
+    );
+
+    @GET("rest/v1/services")
+    Call<List<ServiceEntity>> getAllServices(
+            @Header("apikey") String apiKey,
+            @Header("Authorization") String authToken
+    );
+
+    @POST("rest/v1/services")
+    Call<Void> addService(
+            @Header("apikey") String apiKey,
+            @Header("Authorization") String authToken,
+            @Header("Content-Type") String contentType,
+            @Header("Prefer") String prefer,
+            @Body List<java.util.Map<String, Object>> serviceList
     );
 }
