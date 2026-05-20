@@ -58,6 +58,15 @@ public interface SupabaseApi {
             @Body List<java.util.Map<String, Object>> vehicleList
     );
 
+    @PATCH("rest/v1/vehicles")
+    Call<Void> updateVehicle(
+            @Header("apikey") String apiKey,
+            @Header("Authorization") String authToken,
+            @Header("Content-Type") String contentType,
+            @Query("id") String vehicleId,
+            @Body java.util.Map<String, Object> updates
+    );
+
     // Service Record endpoints
     @GET("rest/v1/services")
     Call<List<ServiceEntity>> getServices(

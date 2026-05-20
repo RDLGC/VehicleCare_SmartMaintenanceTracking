@@ -34,6 +34,10 @@ public class ServiceRepository {
         return serviceDao.getAllServices();
     }
 
+    public LiveData<List<ServiceEntity>> getServicesForVehicle(String vehicleId) {
+        return serviceDao.getServicesForVehicle(vehicleId);
+    }
+
     public LiveData<Double> getTotalSpent() {
         return serviceDao.getTotalSpent();
     }
@@ -42,7 +46,12 @@ public class ServiceRepository {
         loadingLiveData.setValue(true);
         addSuccessLiveData.setValue(false);
         
+        String id = java.util.UUID.randomUUID().toString();
+        String createdAt = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", java.util.Locale.US).format(new java.util.Date());
+        ServiceEntity newService = new ServiceEntity(id, vehicleId, type, date, mileage, cost, provider, notes, createdAt);
+
         Map<String, Object> data = new HashMap<>();
+        data.put("id", id);
         data.put("vehicle_id", vehicleId);
         data.put("service_type", type);
         data.put("service_date", date);
@@ -53,6 +62,9 @@ public class ServiceRepository {
         
         List<Map<String, Object>> list = new ArrayList<>();
         list.add(data);
+        
+        // Optimistic insert
+        executorService.execute(() -> serviceDao.insertService(newService));
         
         supabaseApi.addService(supabaseKey, "Bearer " + supabaseKey, "application/json", "return=minimal", list)
                 .enqueue(new Callback<Void>() {

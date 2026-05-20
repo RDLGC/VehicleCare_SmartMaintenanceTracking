@@ -4,6 +4,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import com.example.vehiclecare_smartmaintenancetracking.models.ReminderEntity;
 import java.util.List;
 import com.example.vehiclecare_smartmaintenancetracking.database.AppDatabase;
@@ -14,6 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReminderViewModel extends AndroidViewModel {
     private final ReminderRepository reminderRepository;
+    private final MutableLiveData<String> selectedVehicleId = new MutableLiveData<>();
+    private final LiveData<List<ReminderEntity>> filteredReminders;
 
     public ReminderViewModel(@NonNull Application application) {
         super(application);
@@ -28,6 +32,7 @@ public class ReminderViewModel extends AndroidViewModel {
         AppDatabase db = AppDatabase.getInstance(application);
         
         this.reminderRepository = new ReminderRepository(api, db.reminderDao());
+        this.filteredReminders = Transformations.switchMap(selectedVehicleId, reminderRepository::getRemindersForVehicle);
     }
 
     public void addReminder(String userId, String vehicleId, String maintenanceType, String reminderType, Integer mileage, String date, String notes, String supabaseKey) {
@@ -36,6 +41,18 @@ public class ReminderViewModel extends AndroidViewModel {
 
     public LiveData<List<ReminderEntity>> getReminders(String userId) {
         return reminderRepository.getReminders(userId);
+    }
+
+    public LiveData<List<ReminderEntity>> getRemindersForVehicle(String vehicleId) {
+        return reminderRepository.getRemindersForVehicle(vehicleId);
+    }
+
+    public void setSelectedVehicleId(String vehicleId) {
+        selectedVehicleId.setValue(vehicleId);
+    }
+
+    public LiveData<List<ReminderEntity>> getFilteredReminders() {
+        return filteredReminders;
     }
 
     public void refreshReminders(String userId, String supabaseKey) {

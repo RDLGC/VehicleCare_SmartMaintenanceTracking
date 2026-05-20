@@ -34,7 +34,12 @@ public class ReminderRepository {
         loadingLiveData.setValue(true);
         addSuccessLiveData.setValue(false);
         
+        String id = java.util.UUID.randomUUID().toString();
+        String createdAt = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", java.util.Locale.US).format(new java.util.Date());
+        ReminderEntity newReminder = new ReminderEntity(id, userId, vehicleId, maintenanceType, reminderType, mileage, date, true, notes, createdAt);
+
         Map<String, Object> data = new HashMap<>();
+        data.put("id", id);
         data.put("user_id", userId);
         data.put("vehicle_id", vehicleId);
         data.put("maintenance_type", maintenanceType);
@@ -45,6 +50,9 @@ public class ReminderRepository {
         
         List<Map<String, Object>> list = new ArrayList<>();
         list.add(data);
+        
+        // Optimistic insert
+        executorService.execute(() -> reminderDao.insertReminder(newReminder));
         
         supabaseApi.addReminder(supabaseKey, "Bearer " + supabaseKey, "application/json", "return=minimal", list)
                 .enqueue(new Callback<Void>() {
@@ -86,6 +94,10 @@ public class ReminderRepository {
 
     public LiveData<List<ReminderEntity>> getReminders(String userId) {
         return reminderDao.getRemindersForUser(userId);
+    }
+
+    public LiveData<List<ReminderEntity>> getRemindersForVehicle(String vehicleId) {
+        return reminderDao.getRemindersForVehicle(vehicleId);
     }
 
     public LiveData<String> getError() { return errorLiveData; }

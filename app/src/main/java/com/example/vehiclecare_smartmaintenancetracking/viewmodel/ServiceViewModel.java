@@ -4,6 +4,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import com.example.vehiclecare_smartmaintenancetracking.database.AppDatabase;
 import com.example.vehiclecare_smartmaintenancetracking.models.ServiceEntity;
 import com.example.vehiclecare_smartmaintenancetracking.network.SupabaseApi;
@@ -14,6 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceViewModel extends AndroidViewModel {
     private final ServiceRepository serviceRepository;
+    private final MutableLiveData<String> selectedVehicleId = new MutableLiveData<>();
+    private final LiveData<List<ServiceEntity>> filteredServices;
 
     public ServiceViewModel(@NonNull Application application) {
         super(application);
@@ -28,6 +32,7 @@ public class ServiceViewModel extends AndroidViewModel {
         AppDatabase db = AppDatabase.getInstance(application);
         
         this.serviceRepository = new ServiceRepository(api, db.serviceDao());
+        this.filteredServices = Transformations.switchMap(selectedVehicleId, serviceRepository::getServicesForVehicle);
     }
 
     public void addService(String vehicleId, String type, String date, Integer mileage, Double cost, String provider, String notes, String supabaseKey) {
@@ -36,6 +41,18 @@ public class ServiceViewModel extends AndroidViewModel {
 
     public LiveData<List<ServiceEntity>> getServices() {
         return serviceRepository.getLocalServices();
+    }
+
+    public LiveData<List<ServiceEntity>> getServicesForVehicle(String vehicleId) {
+        return serviceRepository.getServicesForVehicle(vehicleId);
+    }
+
+    public void setSelectedVehicleId(String vehicleId) {
+        selectedVehicleId.setValue(vehicleId);
+    }
+
+    public LiveData<List<ServiceEntity>> getFilteredServices() {
+        return filteredServices;
     }
 
     public LiveData<Double> getTotalSpent() {

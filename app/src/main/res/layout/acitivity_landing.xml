@@ -140,6 +140,7 @@
                             app:layout_constraintTop_toTopOf="@id/cvCarIcon"/>
 
                         <TextView
+                            android:id="@+id/tvCarDetail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2022 • LE Sedan"
@@ -324,6 +325,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvUpcomingContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
@@ -332,176 +334,29 @@
                 app:cardElevation="4dp"
                 app:cardBackgroundColor="@color/white">
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
-                    <!-- Oil Change -->
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <LinearLayout
+                        android:id="@+id/llUpcomingList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp">
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cvOil"
-                            android:layout_width="44dp"
-                            android:layout_height="44dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardBackgroundColor="#FFF0F0"
-                            app:cardElevation="0dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="12dp"
-                                android:src="@android:drawable/ic_menu_manage"
-                                app:tint="#FF3B30"
-                                android:contentDescription="@null" />
-                        </com.google.android.material.card.MaterialCardView>
-                        <TextView
-                            android:id="@+id/tvOilTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Oil Change"
-                            android:fontFamily="sans-serif-black"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:layout_marginStart="16dp"
-                            app:layout_constraintStart_toEndOf="@id/cvOil"
-                            app:layout_constraintTop_toTopOf="@id/cvOil"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Due in 270 miles"
-                            android:textSize="13sp"
-                            android:textColor="@color/text_gray"
-                            app:layout_constraintStart_toStartOf="@id/tvOilTitle"
-                            app:layout_constraintTop_toBottomOf="@id/tvOilTitle"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="URGENT"
-                            android:background="@drawable/bg_button_primary"
-                            android:backgroundTint="#FF3B30"
-                            android:textColor="@color/white"
-                            android:fontFamily="sans-serif-black"
-                            android:textSize="10sp"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="4dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:orientation="vertical">
+                        <!-- Content here -->
+                    </LinearLayout>
 
-                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginHorizontal="16dp"/>
-
-                    <!-- Tire Rotation -->
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <TextView
+                        android:id="@+id/tvNoUpcomingReminders"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp">
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cvTire"
-                            android:layout_width="44dp"
-                            android:layout_height="44dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardBackgroundColor="#FFFDEB"
-                            app:cardElevation="0dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="12dp"
-                                android:src="@android:drawable/ic_menu_my_calendar"
-                                app:tint="#FFCC00"
-                                android:contentDescription="@null" />
-                        </com.google.android.material.card.MaterialCardView>
-                        <TextView
-                            android:id="@+id/tvTireTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tire Rotation"
-                            android:fontFamily="sans-serif-black"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:layout_marginStart="16dp"
-                            app:layout_constraintStart_toEndOf="@id/cvTire"
-                            app:layout_constraintTop_toTopOf="@id/cvTire"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Due in 1,500 miles"
-                            android:textSize="13sp"
-                            android:textColor="@color/text_gray"
-                            app:layout_constraintStart_toStartOf="@id/tvTireTitle"
-                            app:layout_constraintTop_toBottomOf="@id/tvTireTitle"/>
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@android:drawable/ic_media_next"
-                            app:tint="#D1D1D6"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            android:contentDescription="@null" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginHorizontal="16dp"/>
-
-                    <!-- Coolant Flush -->
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cvCoolant"
-                            android:layout_width="44dp"
-                            android:layout_height="44dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardBackgroundColor="#E6F4EA"
-                            app:cardElevation="0dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="12dp"
-                                android:src="@android:drawable/ic_menu_compass"
-                                app:tint="@color/primary_green"
-                                android:contentDescription="@null" />
-                        </com.google.android.material.card.MaterialCardView>
-                        <TextView
-                            android:id="@+id/tvCoolantTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Coolant Flush"
-                            android:fontFamily="sans-serif-black"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:layout_marginStart="16dp"
-                            app:layout_constraintStart_toEndOf="@id/cvCoolant"
-                            app:layout_constraintTop_toTopOf="@id/cvCoolant"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Due in 3 months"
-                            android:textSize="13sp"
-                            android:textColor="@color/text_gray"
-                            app:layout_constraintStart_toStartOf="@id/tvCoolantTitle"
-                            app:layout_constraintTop_toBottomOf="@id/tvCoolantTitle"/>
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@android:drawable/ic_media_next"
-                            app:tint="#D1D1D6"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            android:contentDescription="@null" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
+                        android:padding="32dp"
+                        android:gravity="center"
+                        android:text="Nothing to show here"
+                        android:textColor="@color/text_gray"
+                        android:textSize="14sp"
+                        android:visibility="gone" />
+                </FrameLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Recent Service History -->
@@ -534,6 +389,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvHistoryContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
@@ -542,78 +398,30 @@
                 app:cardElevation="4dp"
                 app:cardBackgroundColor="@color/white">
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:layout_height="wrap_content">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <LinearLayout
+                        android:id="@+id/llHistoryList"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/tvRecent1Title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Annual Inspection"
-                            android:fontFamily="sans-serif-black"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Apr 12, 2026"
-                            android:textSize="13sp"
-                            android:textColor="@color/text_gray"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="AutoCare Center • $89.99"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_gray"
-                            android:layout_marginTop="4dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tvRecent1Title"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <!-- Content -->
+                    </LinearLayout>
 
-                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" android:layout_marginVertical="16dp"/>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <TextView
+                        android:id="@+id/tvNoRecentHistory"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/tvRecent2Title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Brake Pad Replacement"
-                            android:fontFamily="sans-serif-black"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Mar 8, 2026"
-                            android:textSize="13sp"
-                            android:textColor="@color/text_gray"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Toyota Service Center • $425.00"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_gray"
-                            android:layout_marginTop="4dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tvRecent2Title"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:padding="32dp"
+                        android:gravity="center"
+                        android:text="Nothing to show here"
+                        android:textColor="@color/text_gray"
+                        android:textSize="14sp"
+                        android:visibility="gone" />
+                </FrameLayout>
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>

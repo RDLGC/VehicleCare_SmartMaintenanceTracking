@@ -20,8 +20,14 @@ public interface VehicleDao {
     @Query("SELECT * FROM vehicles WHERE user_id = :userId ORDER BY created_at DESC")
     LiveData<List<VehicleEntity>> getVehiclesForUser(String userId);
 
+    @Query("SELECT * FROM vehicles WHERE id = :id LIMIT 1")
+    LiveData<VehicleEntity> getVehicleById(String id);
+
     @Delete
     void deleteVehicle(VehicleEntity vehicle);
+
+    @Query("DELETE FROM vehicles WHERE id = :id")
+    void deleteById(String id);
 
     @Query("DELETE FROM vehicles")
     void clearAll();

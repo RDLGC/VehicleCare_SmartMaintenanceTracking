@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -65,13 +66,39 @@ public class ManageVehiclesActivity extends AppCompatActivity {
         adapter.setOnVehicleClickListener(new VehicleAdapter.OnVehicleClickListener() {
             @Override
             public void onVehicleClick(VehicleEntity vehicle) {
-                // Handle vehicle click
+                // Set as active vehicle
+                android.content.SharedPreferences prefs = getSharedPreferences("VehicleCare", MODE_PRIVATE);
+                prefs.edit().putString("active_vehicle_id", vehicle.getId()).apply();
+                
+                Toast.makeText(ManageVehiclesActivity.this, vehicle.getName() + " set as active", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onEditClick(VehicleEntity vehicle) {
+                Intent intent = new Intent(ManageVehiclesActivity.this, AddVehicleActivity.class);
+                intent.putExtra("vehicle_id", vehicle.getId());
+                startActivity(intent);
             }
 
             @Override
             public void onDeleteClick(VehicleEntity vehicle) {
-                String supabaseKey = getString(R.string.supabase_key);
-                vehicleViewModel.deleteVehicle(vehicle.getId(), supabaseKey);
+                new androidx.appcompat.app.AlertDialog.Builder(ManageVehiclesActivity.this)
+                        .setTitle("Delete Vehicle")
+                        .setMessage("Are you sure you want to delete " + vehicle.getName() + "?")
+                        .setPositiveButton("Delete", (dialog, which) -> {
+                            String supabaseKey = getString(R.string.supabase_key);
+                            
+                            // Clear active vehicle preference if this is the one being deleted
+                            android.content.SharedPreferences prefs = getSharedPreferences("VehicleCare", MODE_PRIVATE);
+                            if (vehicle.getId().equals(prefs.getString("active_vehicle_id", null))) {
+                                prefs.edit().remove("active_vehicle_id").apply();
+                            }
+
+                            vehicleViewModel.deleteVehicle(vehicle.getId(), supabaseKey);
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
             }
         });
     }

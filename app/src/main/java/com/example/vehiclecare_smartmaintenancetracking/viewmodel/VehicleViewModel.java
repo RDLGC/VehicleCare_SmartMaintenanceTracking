@@ -34,10 +34,18 @@ public class VehicleViewModel extends AndroidViewModel {
         vehicleRepository.addVehicle(userId, name, type, year, mileage, modelTrim, supabaseKey);
     }
 
+    public void updateVehicle(VehicleEntity vehicle, String supabaseKey) {
+        vehicleRepository.updateVehicle(vehicle, supabaseKey);
+    }
+
     public LiveData<List<VehicleEntity>> getVehicles(String userId) {
         return vehicleRepository.getLocalVehicles(userId);
     }
     
+    public LiveData<VehicleEntity> getVehicleById(String id) {
+        return vehicleRepository.getVehicleById(id);
+    }
+
     public void refreshVehicles(String userId, String supabaseKey) {
         vehicleRepository.refreshVehicles(userId, supabaseKey);
     }

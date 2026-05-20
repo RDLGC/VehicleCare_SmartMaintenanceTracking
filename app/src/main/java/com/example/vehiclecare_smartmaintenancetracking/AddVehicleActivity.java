@@ -14,6 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class AddVehicleActivity extends AppCompatActivity {
     private VehicleViewModel vehicleViewModel;
     private String selectedType = "Car"; // Default selection
+    private String vehicleId = null;
+    private com.example.vehiclecare_smartmaintenancetracking.models.VehicleEntity editingVehicle;
     
     private MaterialCardView cardCar, cardMotorcycle, cardTruck;
     private TextInputEditText etName, etYear, etMileage, etModelTrim;
@@ -25,10 +27,32 @@ public class AddVehicleActivity extends AppCompatActivity {
 
         vehicleViewModel = new ViewModelProvider(this).get(VehicleViewModel.class);
 
+        vehicleId = getIntent().getStringExtra("vehicle_id");
+
         initViews();
         setupTypeSelector();
         setupActions();
         observeViewModel();
+
+        if (vehicleId != null) {
+            loadVehicleData();
+        }
+    }
+
+    private void loadVehicleData() {
+        ((android.widget.TextView) findViewById(R.id.tvTitle)).setText("Edit Vehicle");
+        ((com.google.android.material.button.MaterialButton) findViewById(R.id.btnAddVehicle)).setText("Update Vehicle");
+
+        vehicleViewModel.getVehicleById(vehicleId).observe(this, vehicle -> {
+            if (vehicle != null && editingVehicle == null) {
+                editingVehicle = vehicle;
+                etName.setText(vehicle.getName());
+                etYear.setText(String.valueOf(vehicle.getYear()));
+                etMileage.setText(String.valueOf(vehicle.getMileage()));
+                etModelTrim.setText(vehicle.getModelTrim());
+                selectType(vehicle.getType());
+            }
+        });
     }
 
     private void initViews() {
@@ -83,7 +107,16 @@ public class AddVehicleActivity extends AppCompatActivity {
                 Integer year = yearStr.isEmpty() ? 0 : Integer.parseInt(yearStr);
                 Integer mileage = mileageStr.isEmpty() ? 0 : Integer.parseInt(mileageStr);
                 
-                vehicleViewModel.addVehicle(userId, name, selectedType, year, mileage, model, supabaseKey);
+                if (vehicleId == null) {
+                    vehicleViewModel.addVehicle(userId, name, selectedType, year, mileage, model, supabaseKey);
+                } else if (editingVehicle != null) {
+                    editingVehicle.setName(name);
+                    editingVehicle.setType(selectedType);
+                    editingVehicle.setYear(year);
+                    editingVehicle.setMileage(mileage);
+                    editingVehicle.setModelTrim(model);
+                    vehicleViewModel.updateVehicle(editingVehicle, supabaseKey);
+                }
             }
         });
     }

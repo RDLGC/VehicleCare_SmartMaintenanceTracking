@@ -18,6 +18,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
 
     public interface OnVehicleClickListener {
         void onVehicleClick(VehicleEntity vehicle);
+        void onEditClick(VehicleEntity vehicle);
         void onDeleteClick(VehicleEntity vehicle);
     }
 
@@ -60,6 +61,12 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
             }
         });
 
+        holder.ivEdit.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onEditClick(current);
+            }
+        });
+
         holder.itemView.setOnLongClickListener(v -> {
             if (listener != null) {
                 listener.onDeleteClick(current);
@@ -76,7 +83,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
 
     class VehicleViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvName, tvDetail, tvMileage;
-        private final ImageView ivIcon;
+        private final ImageView ivIcon, ivEdit;
 
         public VehicleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,6 +91,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleV
             tvDetail = itemView.findViewById(R.id.tvVehicleDetail);
             tvMileage = itemView.findViewById(R.id.tvMileage);
             ivIcon = itemView.findViewById(R.id.ivVehicleIcon);
+            ivEdit = itemView.findViewById(R.id.ivEditVehicle);
         }
     }
 }

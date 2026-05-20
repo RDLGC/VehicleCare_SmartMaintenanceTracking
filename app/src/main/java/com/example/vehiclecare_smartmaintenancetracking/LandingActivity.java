@@ -2,6 +2,8 @@ package com.example.vehiclecare_smartmaintenancetracking;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,6 +22,7 @@ public class LandingActivity extends AppCompatActivity {
     private VehicleViewModel vehicleViewModel;
     private ServiceViewModel serviceViewModel;
     private ReminderViewModel reminderViewModel;
+    private List<com.example.vehiclecare_smartmaintenancetracking.models.VehicleEntity> currentVehicles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,12 @@ public class LandingActivity extends AppCompatActivity {
 
         setupActions();
         observeViewModel();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshUI();
     }
 
     private void setupActions() {
@@ -92,21 +101,18 @@ public class LandingActivity extends AppCompatActivity {
         String userId = FirebaseAuth.getInstance().getUid();
         if (userId != null) {
             vehicleViewModel.getVehicles(userId).observe(this, vehicles -> {
-                if (vehicles != null && !vehicles.isEmpty()) {
-                    ((TextView) findViewById(R.id.tvHeaderSubtitle)).setText(vehicles.get(0).getName());
-                    ((TextView) findViewById(R.id.tvCarName)).setText(vehicles.get(0).getName());
-                    ((TextView) findViewById(R.id.tvLandingMileage)).setText(String.format(Locale.US, "%,d mi", vehicles.get(0).getMileage()));
-                }
+                this.currentVehicles = vehicles;
+                refreshUI();
             });
 
-            serviceViewModel.getServices().observe(this, services -> {
+            serviceViewModel.getFilteredServices().observe(this, services -> {
                 if (services != null) {
                     ((TextView) findViewById(R.id.tvLandingServiceCount)).setText(String.valueOf(services.size()));
                     updateRecentHistory(services);
                 }
             });
 
-            reminderViewModel.getReminders(userId).observe(this, reminders -> {
+            reminderViewModel.getFilteredReminders().observe(this, reminders -> {
                 if (reminders != null) {
                     updateUpcomingMaintenance(reminders);
                 }
@@ -118,30 +124,98 @@ public class LandingActivity extends AppCompatActivity {
         }
     }
 
-    private void updateRecentHistory(List<ServiceEntity> services) {
-        if (services.size() >= 1) {
-            ServiceEntity s1 = services.get(services.size() - 1);
-            ((TextView) findViewById(R.id.tvRecent1Title)).setText(s1.getServiceType());
-            // Need a way to show date/provider - can add more views if needed or just use strings
+    private void refreshUI() {
+        if (currentVehicles == null || currentVehicles.isEmpty()) return;
+
+        android.content.SharedPreferences prefs = getSharedPreferences("VehicleCare", MODE_PRIVATE);
+        String activeVehicleId = prefs.getString("active_vehicle_id", null);
+
+        com.example.vehiclecare_smartmaintenancetracking.models.VehicleEntity active = null;
+        if (activeVehicleId != null) {
+            for (com.example.vehiclecare_smartmaintenancetracking.models.VehicleEntity v : currentVehicles) {
+                if (activeVehicleId.equals(v.getId())) {
+                    active = v;
+                    break;
+                }
+            }
         }
-        if (services.size() >= 2) {
-            ServiceEntity s2 = services.get(services.size() - 2);
-            ((TextView) findViewById(R.id.tvRecent2Title)).setText(s2.getServiceType());
+        if (active == null) {
+            active = currentVehicles.get(0);
+            // Save this as active if none selected
+            prefs.edit().putString("active_vehicle_id", active.getId()).apply();
+        }
+
+        ((TextView) findViewById(R.id.tvHeaderSubtitle)).setText(active.getName());
+        ((TextView) findViewById(R.id.tvCarName)).setText(active.getName());
+        ((TextView) findViewById(R.id.tvCarDetail)).setText(String.format(Locale.US, "%d • %s", active.getYear(), active.getModelTrim()));
+        ((TextView) findViewById(R.id.tvLandingMileage)).setText(String.format(Locale.US, "%,d mi", active.getMileage()));
+
+        // Update selected vehicle in ViewModels to trigger filtered observations
+        serviceViewModel.setSelectedVehicleId(active.getId());
+        reminderViewModel.setSelectedVehicleId(active.getId());
+    }
+
+    private void updateRecentHistory(List<ServiceEntity> services) {
+        LinearLayout container = findViewById(R.id.llHistoryList);
+        TextView tvEmpty = findViewById(R.id.tvNoRecentHistory);
+        container.removeAllViews();
+
+        if (services == null || services.isEmpty()) {
+            tvEmpty.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        tvEmpty.setVisibility(View.GONE);
+        // Show last 2
+        int count = Math.min(services.size(), 2);
+        for (int i = 0; i < count; i++) {
+            ServiceEntity s = services.get(services.size() - 1 - i);
+            View view = getLayoutInflater().inflate(R.layout.item_service_minimal, container, false);
+            ((TextView) view.findViewById(R.id.tvServiceTitle)).setText(s.getServiceType());
+            ((TextView) view.findViewById(R.id.tvServiceDate)).setText(s.getServiceDate());
+            ((TextView) view.findViewById(R.id.tvServiceDetail)).setText(String.format(Locale.US, "%s • $%.2f", s.getProvider(), s.getCost()));
+            container.addView(view);
+            
+            if (i < count - 1) {
+                View divider = new View(this);
+                divider.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 1));
+                divider.setBackgroundColor(0xFFF0F0F0);
+                container.addView(divider);
+            }
         }
     }
 
     private void updateUpcomingMaintenance(List<ReminderEntity> reminders) {
-        if (reminders.size() >= 1) {
-            ReminderEntity r1 = reminders.get(0);
-            ((TextView) findViewById(R.id.tvOilTitle)).setText(r1.getMaintenanceType());
+        LinearLayout container = findViewById(R.id.llUpcomingList);
+        TextView tvEmpty = findViewById(R.id.tvNoUpcomingReminders);
+        container.removeAllViews();
+
+        if (reminders == null || reminders.isEmpty()) {
+            tvEmpty.setVisibility(View.VISIBLE);
+            return;
         }
-        if (reminders.size() >= 2) {
-            ReminderEntity r2 = reminders.get(1);
-            ((TextView) findViewById(R.id.tvTireTitle)).setText(r2.getMaintenanceType());
-        }
-        if (reminders.size() >= 3) {
-            ReminderEntity r3 = reminders.get(2);
-            ((TextView) findViewById(R.id.tvCoolantTitle)).setText(r3.getMaintenanceType());
+
+        tvEmpty.setVisibility(View.GONE);
+        // Show last 3
+        int count = Math.min(reminders.size(), 3);
+        for (int i = 0; i < count; i++) {
+            ReminderEntity r = reminders.get(i);
+            View view = getLayoutInflater().inflate(R.layout.item_reminder_minimal, container, false);
+            ((TextView) view.findViewById(R.id.tvReminderTitle)).setText(r.getMaintenanceType());
+            
+            String desc = "";
+            if ("Mileage".equals(r.getReminderType())) desc = "Due in " + r.getMileageInterval() + " mi";
+            else desc = "Due on " + r.getSpecificDate();
+            
+            ((TextView) view.findViewById(R.id.tvReminderDesc)).setText(desc);
+            container.addView(view);
+
+            if (i < count - 1) {
+                View divider = new View(this);
+                divider.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 1));
+                divider.setBackgroundColor(0xFFF0F0F0);
+                container.addView(divider);
+            }
         }
     }
 }
